@@ -1,0 +1,1 @@
+Score Alarm backend application.
