@@ -1,6 +1,7 @@
 import os.path
 import cherrypy
 from jinja2 import Environment, FileSystemLoader
+import db_tools
 
 env = Environment(loader=FileSystemLoader('templates'))
 
@@ -13,9 +14,11 @@ class ScoreAlarm:
 		return template.render({'content': content})
 
 	@cherrypy.expose
-	def add_game(self):
+	def add_game(self, host=None, guest=None, start_time=None):
+		if cherrypy.request.method.upper() == 'POST':
+			db_tools.add_game({host, guest, start_time})
 		template = env.get_template('add_game.html')
-		content = 'Input data here:'
+		content = ""
 		return template.render({'content': content})
 
 	@cherrypy.expose

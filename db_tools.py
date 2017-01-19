@@ -8,7 +8,7 @@ def connect():
 	try:
 		connection = psycopg2.connect(database='score_alarm', user='score_alarm', password='')
 		return connection
-	except Exception, e:
+	except(Exception, e):
 		cherrypy.log('Error connecting to the database', e)
 
 def get_data(pk, table):
@@ -24,6 +24,6 @@ def delete(pk, table):
 	with connect() as c:
 		c.execute("DELETE FROM %s WHERE id=%s", (table, pk,))
 
-def create_game(data):
+def add_game(data):
 	with connect() as c:
 		c.execute("INSERT INTO game (host, guest, start_time) VALUES (%s, %s, %s)", (data['host'], data['guest'], data['start_time'],))
