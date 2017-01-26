@@ -16,7 +16,11 @@ class ScoreAlarm:
 	@cherrypy.expose
 	def add_game(self, host=None, guest=None, start_time=None):
 		if cherrypy.request.method.upper() == 'POST':
-			db_tools.add_game({host, guest, start_time})
+			data = {
+				'host': host,
+				'guest': guest,
+				'start_time': start_time}
+			db_tools.add_game(data)
 		template = env.get_template('add_game.html')
 		content = ""
 		return template.render({'content': content})

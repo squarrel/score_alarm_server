@@ -1,3 +1,4 @@
+import cherrypy
 import psycopg2
 import psycopg2.extensions as pg_extensions
 
@@ -6,9 +7,9 @@ pg_extensions.register_type(pg_extensions.UNICODEARRAY)
 
 def connect():
 	try:
-		connection = psycopg2.connect(database='score_alarm', user='score_alarm', password='')
+		connection = psycopg2.connect(database='scorealarm', user='m', password='')
 		return connection
-	except(Exception, e):
+	except Exception as e:
 		cherrypy.log('Error connecting to the database', e)
 
 def get_data(pk, table):
@@ -25,5 +26,8 @@ def delete(pk, table):
 		c.execute("DELETE FROM %s WHERE id=%s", (table, pk,))
 
 def add_game(data):
-	with connect() as c:
-		c.execute("INSERT INTO game (host, guest, start_time) VALUES (%s, %s, %s)", (data['host'], data['guest'], data['start_time'],))
+	print('---', data)
+	with connect() as connection:
+		cursor = connection.cursor()
+		cursor.execute("INSERT INTO game (host, guest, start_time) VALUES (%s, %s, %s)", (data['host'], data['guest'], data['start_time'],))
+		connection.commit()
