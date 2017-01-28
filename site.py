@@ -14,16 +14,21 @@ class ScoreAlarm:
 		return template.render({'content': content})
 
 	@cherrypy.expose
-	def add_game(self, host=None, guest=None, start_time=None):
-		if cherrypy.request.method.upper() == 'POST':
-			data = {
-				'host': host,
-				'guest': guest,
-				'start_time': start_time}
-			db_tools.add_game(data)
+	def add_game(self, host='', guest=None, start_time=None):
 		template = env.get_template('add_game.html')
 		content = ""
 		return template.render({'content': content})
+
+	@cherrypy.expose
+	def add_game_post(self, host=None, guest=None, start_time=None):
+		print('host', host)
+
+		data = {
+			'host': host,
+			'guest': guest,
+			'start_time': start_time}
+		db_tools.add_game(data)
+		return 'Success'
 
 	@cherrypy.expose
 	def edit_game(self, pk):
