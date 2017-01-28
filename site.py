@@ -46,6 +46,19 @@ class ScoreAlarm:
 		raise cherrypy.HTTPRedirect('/')
 
 	@cherrypy.expose
+	def add_player(self):
+		template = env.get_template('add_player.html')
+		return template.render()
+
+	@cherrypy.expose
+	def add_player_post(self, first_name=None, last_name=None):
+		data = {
+			'first_name': first_name,
+			'last_name': last_name}
+		db_tools.add_team(data)
+		raise cherrypy.HTTPRedirect('/')
+
+	@cherrypy.expose
 	def edit_game(self, pk):
 		template = env.get_template('edit_game.html')
 		content = 'Input data here:'
