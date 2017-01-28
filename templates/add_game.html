@@ -3,13 +3,20 @@
 {% block body %}
 <h3>Dodaj novu utakmicu:</h3>
 <form method='post' action='/add_game_post/' name='add_game'>
-Domacin <input type='text' name="host" size='40' maxlength='40'/>
-<br/>
-Gost <input type='text' name="guest" size='40' maxlength='40'/>
-<br/>
-Pocetak <input type='text' name="start_time" size='16' maxlength='16'/>
-<br/>
+<table>
+	<tr>
+		<td>Domacin</td>
+		<td><input type='text' name="host" size='40' maxlength='40'/></td>
+	</tr>
+	<tr>
+		<td>Gost</td>
+		<td><input type='text' name="guest" size='40' maxlength='40'/></td>
+	</tr>
+	<tr>
+		<td>Pocetak</td>
+		<td><input type='text' name="start_time" size='16' maxlength='16'/></td>
+	</tr>
+</table>
 <button type='submit'>Dodaj</button>
 </form>
-{{ content }}
 {% endblock %}

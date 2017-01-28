@@ -3,12 +3,20 @@
 {% block body %}
 <h3>Add new team:</h3>
 <form method='post' action='/add_team_post/' name='add_team'>
-Name<input type='text' name="title" size='40' maxlength='40'/>
-<br/>
-City<input type='text' name="city" size='40' maxlength='40'/>
-<br/>
-Country<input type='text' name="country" size='40' maxlength='40'/>
-<br/>
+<table>
+	<tr>
+		<td>Name</td>
+		<td><input type='text' name="title" size='40' maxlength='40'/></td>
+	</tr>
+	<tr>
+		<td>City</td>
+		<td><input type='text' name="city" size='40' maxlength='40'/></td>
+	</tr>
+	<tr>
+		<td>Country</td>
+		<td><input type='text' name="country" size='40' maxlength='40'/></td>
+	</tr>
+</table>
 <button type='submit'>Submit</button>
 </form>
 {{ content }}

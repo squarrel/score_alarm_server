@@ -10,14 +10,13 @@ class ScoreAlarm:
 	@cherrypy.expose
 	def index(self):
 		template = env.get_template('index.html')
-		content = 'Score Alarm application server'
-		return template.render({'content': content})
+		return template.render()
 
 	@cherrypy.expose
 	def add_game(self):
 		template = env.get_template('add_game.html')
-		content = ""
-		return template.render({'content': content})
+		teams = ''
+		return template.render({'teams': teams})
 
 	@cherrypy.expose
 	def add_game_post(self, host=None, guest=None, start_time=None):
@@ -31,8 +30,11 @@ class ScoreAlarm:
 	@cherrypy.expose
 	def add_team(self):
 		template = env.get_template('add_team.html')
-		content = ""
-		return template.render({'content': content})
+		cities = ''
+		countries = ''
+		return template.render({
+			'cities': cities,
+			'countries': countries})
 
 	@cherrypy.expose
 	def add_team_post(self, title=None, city=None, country=None):
