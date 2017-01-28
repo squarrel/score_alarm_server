@@ -26,8 +26,13 @@ def delete(pk, table):
 		c.execute("DELETE FROM %s WHERE id=%s", (table, pk,))
 
 def add_game(data):
-	print('---', data)
 	with connect() as connection:
 		cursor = connection.cursor()
 		cursor.execute("INSERT INTO game (host, guest, start_time) VALUES (%s, %s, %s)", (data['host'], data['guest'], data['start_time'],))
+		connection.commit()
+
+def add_team(data):
+	with connect() as connection:
+		cursor = connection.cursor()
+		cursor.execute("INSERT INTO team (title, city, country) VALUES (%s, %s, %s)", (data['title'], data['city'], data['country'],))
 		connection.commit()
