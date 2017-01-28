@@ -55,7 +55,7 @@ class ScoreAlarm:
 		data = {
 			'first_name': first_name,
 			'last_name': last_name}
-		db_tools.add_team(data)
+		db_tools.add_player(data)
 		raise cherrypy.HTTPRedirect('/')
 
 	@cherrypy.expose

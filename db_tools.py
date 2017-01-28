@@ -36,3 +36,9 @@ def add_team(data):
 		cursor = connection.cursor()
 		cursor.execute("INSERT INTO team (title, city, country) VALUES (%s, %s, %s)", (data['title'], data['city'], data['country'],))
 		connection.commit()
+
+def add_player(data):
+	with connect() as connection:
+		cursor = connection.cursor()
+		cursor.execute("INSERT INTO player (first_name, last_name) VALUES (%s, %s)", (data['first_name'], data['last_name'],))
+		connection.commit()
