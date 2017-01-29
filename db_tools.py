@@ -42,3 +42,17 @@ def add_player(data):
 		cursor = connection.cursor()
 		cursor.execute("INSERT INTO player (first_name, last_name) VALUES (%s, %s)", (data['first_name'], data['last_name'],))
 		connection.commit()
+
+def all_games():
+	with connect() as connection:
+		cursor = connection.cursor()
+		cursor.execute("SELECT * FROM game")
+		games = cursor.fetchall()
+		return games
+
+def all_players():
+	with connect() as connection:
+		cursor = connection.cursor()
+		cursor.execute("SELECT * FROM player")
+		players = cursor.fetchall()
+		return players
