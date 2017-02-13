@@ -5,12 +5,12 @@
 <p>Use this application to enter new data for NBA scores.</p>
 <ul>
 {% for game in games %}
-	<li>{{ game.5 }} : {{ game.6 }}</li>
+	<li><a href="/game/{{ game.0 }}">{{ game.5 }} : {{ game.6 }}</a></li>
 {% endfor %}
 </ul>
 <ul>
 {% for player in players %}
-	<li>{{ player.1 }} {{ player.2 }}</li>
+	<li><a href="/player/{{ player.0 }}">{{ player.1 }} {{ player.2 }}</a></li>
 {% endfor %}
 </ul>
 {% endblock %}

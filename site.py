@@ -12,11 +12,24 @@ class ScoreAlarm:
 		template = env.get_template('index.html')
 		games = db_tools.all_games()
 		players = db_tools.all_players()
-		print('players', players)
 		args = {
 			'games': games,
 			'players': players}
 		return template.render(args)
+
+	@cherrypy.expose
+	def game(self, pk):
+		template = env.get_template('game.html')
+		game = db_tools.get_game(pk)
+		args = {'game': game}
+		return template.render
+
+	@cherrypy.expose
+	def player(self, pk):
+		template = env.get_template('player.html')
+		player = db_tools.get_player(pk)
+		args = {'player': player}
+		return template.render
 
 	@cherrypy.expose
 	def add_game(self):

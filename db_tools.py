@@ -12,10 +12,19 @@ def connect():
 	except Exception as e:
 		cherrypy.log('Error connecting to the database', e)
 
-def get_data(pk, table):
-	with connect() as c:
-		r = c.execute("SELECT * FROM %s WHERE id=%s", (table, pk,))
-		return r.fetchone()
+def get_player(pk):
+	with connect() as connection:
+		cursor = connection.cursor()
+		cursor.execute("SELECT * FROM player WHERE player_id=%s", pk)
+		player = cursor.fetchone()
+		return player
+
+def get_game(pk):
+	with connect() as connection:
+		cursor = connection.cursor()
+		cursor.execute("SELECT * FROM game WHERE game_id=%s", pk)
+		game = cursor.fetchone()
+		return game
 
 def edit_game(pk, data):
 	with connect() as c:
