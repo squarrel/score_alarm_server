@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import cherrypy
 import psycopg2
 import psycopg2.extensions as pg_extensions
@@ -17,6 +19,7 @@ def get_player(pk):
 		cursor = connection.cursor()
 		cursor.execute("SELECT * FROM player WHERE player_id=%s", pk)
 		player = cursor.fetchone()
+		print(player)
 		return player
 
 def get_game(pk):
