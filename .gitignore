@@ -1,4 +1,4 @@
-*.swp
+*.sw*
 *.pyc
 *.zip
 score_alarm.conf

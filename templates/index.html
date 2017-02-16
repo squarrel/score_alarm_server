@@ -9,6 +9,11 @@
 {% endfor %}
 </ul>
 <ul>
+{% for team in teams %}
+	<li><a href="/team/{{ team.0 }}">{{ team.1 }} {{ team.2 }}</a></li>
+{% endfor %}
+</ul>
+<ul>
 {% for player in players %}
 	<li><a href="/player/{{ player.0 }}">{{ player.1 }} {{ player.2 }}</a></li>
 {% endfor %}

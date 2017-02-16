@@ -19,8 +19,14 @@ def get_player(pk):
 		cursor = connection.cursor()
 		cursor.execute("SELECT * FROM player WHERE player_id=%s", pk)
 		player = cursor.fetchone()
-		print(player)
 		return player
+
+def get_team(pk):
+	with connect() as connection:
+		cursor = connection.cursor()
+		cursor.execute("SELECT * FROM team WHERE team_id=%s", pk)
+		team = cursor.fetchone()
+		return team
 
 def get_game(pk):
 	with connect() as connection:
@@ -61,6 +67,13 @@ def all_games():
 		cursor.execute("SELECT * FROM game")
 		games = cursor.fetchall()
 		return games
+
+def all_teams():
+	with connect() as connection:
+		cursor = connection.cursor()
+		cursor.execute("SELECT * FROM team")
+		teams = cursor.fetchall()
+		return teams
 
 def all_players():
 	with connect() as connection:
