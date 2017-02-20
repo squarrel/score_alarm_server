@@ -89,3 +89,10 @@ def all_players():
 		cursor.execute("SELECT * FROM player")
 		players = cursor.fetchall()
 		return players
+
+def all_players_by_team():
+	with connect() as connection:
+		cursor = connection.cursor()
+		cursor.execute("SELECT * FROM player")
+		players = cursor.fetchall()
+		return players
