@@ -6,11 +6,25 @@
 <table>
 	<tr>
 		<td>Domacin</td>
-		<td><input type='text' name="host" size='40' maxlength='40'/></td>
+		<td>
+			<select name='host'>
+				<option default></option>
+				{% for team in teams %}
+					<option value={{ team.0 }}>{{ team.1  }}</option>
+				{% endfor %}
+			</select>
+		</td>
 	</tr>
 	<tr>
 		<td>Gost</td>
-		<td><input type='text' name="guest" size='40' maxlength='40'/></td>
+		<td>
+			<select name='guest'>
+				<option default></option>
+				{% for team in teams %}
+					<option value={{ team.0 }}>{{ team.1  }}</option>
+				{% endfor %}
+			</select>
+		</td>
 	</tr>
 	<tr>
 		<td>Pocetak</td>

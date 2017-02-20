@@ -46,7 +46,7 @@ class ScoreAlarm:
 	@cherrypy.expose
 	def add_game(self):
 		template = env.get_template('add_game.html')
-		teams = ''
+		teams = db_tools.all_teams()
 		return template.render({'teams': teams})
 
 	@cherrypy.expose
@@ -55,6 +55,7 @@ class ScoreAlarm:
 			'host': host,
 			'guest': guest,
 			'start_time': start_time}
+		print('data', data)
 		db_tools.add_game(data)
 		raise cherrypy.HTTPRedirect('/')
 
