@@ -17,27 +17,29 @@ def connect():
 def get_player(pk):
 	with connect() as connection:
 		cursor = connection.cursor()
-		cursor.execute("SELECT * FROM player WHERE player_id=%s", pk)
+		cursor.execute("SELECT * FROM player WHERE player_id=%s", (pk,))
 		player = cursor.fetchone()
 		return player
 
 def get_team(pk):
 	with connect() as connection:
 		cursor = connection.cursor()
-		cursor.execute("SELECT * FROM team WHERE team_id=%s", pk)
+		cursor.execute("SELECT * FROM team WHERE team_id=%s", (pk,))
 		team = cursor.fetchone()
 		return team
 
 def get_game(pk):
 	with connect() as connection:
 		cursor = connection.cursor()
-		cursor.execute("SELECT * FROM game WHERE game_id=%s", pk)
+		cursor.execute("SELECT * FROM game WHERE game_id=%s", (pk,))
 		game = cursor.fetchone()
 		return game
 
 def edit_game(pk, data):
 	with connect() as c:
-		c.execute("UPDATE game SET (host, guest, host_score, guest_score) = (%s, %s, %s, %s) WHERE id=%s", (data['host'], data['guest'], data['host_score'], data['guest_score'],))
+		c.execute(
+			"UPDATE game SET (host, guest, host_score, guest_score) = (%s, %s, %s, %s) WHERE id=%s",
+			(data['host'], data['guest'], data['host_score'], data['guest_score'],))
 
 def delete(pk, table):
 	with connect() as c:
@@ -62,7 +64,9 @@ def add_team(data):
 def add_player(data):
 	with connect() as connection:
 		cursor = connection.cursor()
-		cursor.execute("INSERT INTO player (first_name, last_name) VALUES (%s, %s)", (data['first_name'], data['last_name'],))
+		cursor.execute(
+			"INSERT INTO player (first_name, last_name) VALUES (%s, %s)",
+			(data['first_name'], data['last_name'],))
 		connection.commit()
 
 def all_games():
